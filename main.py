@@ -32,8 +32,9 @@ while is_game_on:
     screen.update()
     time.sleep(0.1)
     snake.move()
-
-
+    # Detect collision with the food; food size is 10 by 10; snake size is 20 by 20;so half of both to get center is 15.
+    if snake.head.distance(food) < 15:
+        food.refresh()
 
 
 screen.exitonclick()
