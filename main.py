@@ -39,12 +39,21 @@ while is_game_on:
     # Detect collision with the food; food size is 10 by 10; snake size is 20 by 20;so half of both to get center is 15.
     if snake.head.distance(food) < 15:
         food.refresh()
+        snake.extend()
         scoreboard.increase_score()
 
     # Detect collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         is_game_on = False
         scoreboard.game_over()
+
+    # Detect collision with the body
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            is_game_on = False
+            scoreboard.game_over()
 
 
 screen.exitonclick()
